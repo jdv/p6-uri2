@@ -3,7 +3,11 @@ use URI2::Escape;
 
 role URI2::Value {
     multi method new (\self:U: Str:D :$value, *%others) {
-        self.bless: |%(:value(URI2::Escape.unescape: $value),%others);
+        self.bless: |%(
+            value => $value.contains('%')
+              ?? URI2::Escape.unescape: $value
+              !! $value,
+        %others);
     }
 
     method canonical (::?CLASS:D:) { $.value }
