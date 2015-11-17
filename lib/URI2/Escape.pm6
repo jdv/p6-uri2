@@ -5,9 +5,12 @@ role URI2::Escape {
     method escape (
         Str:D $unescaped_string,
         :$pattern = /<!Grammar::RFC3986::unreserved>./,
-        :$code = { $_.Str.encode('UTF-8').list>>.Str>>.fmt('%%%02X').join('') }
     ) {
-        $unescaped_string.subst($pattern, $code, :g);
+        $unescaped_string.subst(
+            $pattern,
+            { $_.Str.encode('UTF-8').list>>.Str>>.fmt('%%%02X').join('') },
+            :g
+        );
     }
 
     method unescape (Str:D $escaped_string) {
