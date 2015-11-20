@@ -1,8 +1,7 @@
 use URI2::Value;
 use v6;
 
-class URI2::Authority::Port does URI2::Value {
-    has Int $.value;
+class URI2::Authority::Port does URI2::Value[Int] {
     has Int $.default;
 
     method escaped (::?CLASS:D:) { $.canonical }

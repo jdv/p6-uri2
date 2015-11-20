@@ -4,8 +4,6 @@ use v6;
 
 #TODO: break up better?
 class URI2::Query does URI2::Value {
-    has Str $.value;
-
     has %.params handles <AT-KEY EXISTS-KEY>;
 
     has @.keywords handles <elems AT-POS EXISTS-POS>;
