@@ -16,7 +16,9 @@ role URI2::Value [::T = Str] {
 
     method escaped (::?CLASS:D:) { URI2::Escape.escape: $.canonical }
 
-    method Str (::?CLASS:D:) { $.escaped }
+    multi method Str (::?CLASS:D:) { $.escaped }
+
+    multi method Bool (::?CLASS:D:) { $.escaped ?? True !! False }
 }
 
 # vim:ft=perl6

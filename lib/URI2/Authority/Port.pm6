@@ -6,12 +6,8 @@ class URI2::Authority::Port does URI2::Value[Int] {
 
     method escaped (::?CLASS:D:) { $.canonical }
 
-    #TODO: fix this
     method canonical (::?CLASS:D:) {
-        $.value.defined && $.default.defined
-          && $.value == $.default
-          ?? ''
-          !! $.value;
+        $.value === $.default ?? Int !! $.value;
     }
 }
 

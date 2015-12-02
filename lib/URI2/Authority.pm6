@@ -23,9 +23,9 @@ class URI2::Authority {
         $obj.clone(|%obj_attrs);
     }
 
-    multi method Str (::?CLASS:D:) {
-        ($_ ~ '@' with $.userinfo) ~ ($_ with $.host)
-        ~ (':' ~ $.port if $.port.Str.defined && $.port.Str.chars );
+    method Str (::?CLASS:D:) {
+        ($.userinfo ~ '@' if $.userinfo) ~ ($.host if $.host)
+          ~ (':' ~ $.port if $.port);
     }
 }
 
